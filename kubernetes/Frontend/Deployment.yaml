@@ -37,6 +37,9 @@ spec:
           requests:
             memory: "225Mi"
             cpu: "100m"
+        volumeMounts:
+        - name: var-cache
+          mountPath: /var/cache/nginx
         # readinessProbe:
         #   httpGet:
         #     scheme: HTTP
@@ -61,4 +64,7 @@ spec:
       #   operator: "Equal"
       #   value: "frontend"
       #   effect: "NoSchedule"
+      volumes:
+      - name: var-cache
+        emptyDir: {}
     

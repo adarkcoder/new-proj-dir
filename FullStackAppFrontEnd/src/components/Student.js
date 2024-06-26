@@ -23,7 +23,7 @@ export default function Student() {
     e.preventDefault()
     const student={name,address}
     console.log(student)
-    fetch("http://a17973351fee448cbabc16240771bff1-55529730.us-east-1.elb.amazonaws.com/student/add",{
+    fetch("http://backend.example.com/student/add",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(student)
@@ -34,7 +34,7 @@ export default function Student() {
 }
 
 useEffect(()=>{
-  fetch("http://a17973351fee448cbabc16240771bff1-55529730.us-east-1.elb.amazonaws.com/student/getAll")
+  fetch("http://backend.example.com/student/getAll")
   .then(res=>res.json())
   .then((result)=>{
     setStudents(result);

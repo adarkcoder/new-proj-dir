@@ -16,21 +16,21 @@ spec:
     spec:
       containers:
       - name: backend-container
-        image: backend
+        image: public.ecr.aws/e8n4i2w8/backend:latest
         ports:
-        - containerPort: 8011
+        - containerPort: 8080
         resources:
           limits:
-            memory: "8500Mi"
-            cpu: "4500m"
+            memory: "500Mi"
+            cpu: "1000m"
           requests:
-            memory: "1000Mi"
-            cpu: "500m"
+            memory: "225Mi"
+            cpu: "100m"
         readinessProbe:
           httpGet:
             scheme: HTTP
             path: /health
-            port: 8011
+            port: 8080
           initialDelaySeconds: 15
           periodSeconds: 5
         livenessProbe:
@@ -41,12 +41,12 @@ spec:
           timeoutSeconds: 5
           httpGet:
             path: /health
-            port: 8011
+            port: 8080
             scheme: HTTP
-      nodeSelector:
-        application: "backend"
-      tolerations:
-      - key: "application"
-        operator: "Equal"
-        value: "backend"
-        effect: "NoSchedule"
+      # nodeSelector:
+      #   application: "backend"
+      # tolerations:
+      # - key: "application"
+      #   operator: "Equal"
+      #   value: "backend"
+      #   effect: "NoSchedule"

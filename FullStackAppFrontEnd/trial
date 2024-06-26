@@ -19,7 +19,7 @@ RUN npm run build
 # Use the official Nginx image to serve the app
 FROM nginx:alpine
 
-# Expose port 80
+# Expose port 8080
 EXPOSE 8080
 
 # Ensure the necessary directories exist and have the right permissions

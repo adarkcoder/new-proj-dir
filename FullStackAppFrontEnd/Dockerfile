@@ -19,11 +19,20 @@ RUN npm run build
 # Use the official Nginx image to serve the app
 FROM nginx:alpine
 
-# Copy the build output to Nginx's html directory
-COPY --from=build /app/build /usr/share/nginx/html
+#Create new user group(appgroup) and user(appuser)
+RUN addgroup --gid 1000 appgroup
+RUN adduser --home /home/appuser --uid 1005 --gid 1000 --disabled-password --gecos "" --shell /bin/bash appuser
+
+# Set the working directory
+WORKDIR /home/appuser
 
 # Expose port 80
 EXPOSE 80
+
+# Copy the build output to Nginx's html directory
+COPY --from=build /app/build /usr/share/nginx/html
+
+USER appuser
 
 # Start Nginx server
 CMD ["nginx", "-g", "daemon off;"]

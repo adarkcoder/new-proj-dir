@@ -23,6 +23,7 @@ WORKDIR /home/appuser
 # Expose port 8080
 EXPOSE 8080
 
+#optional only for testing hpa
 RUN apt-get update && apt-get install -y stress
 
 # Copy the jar file from the build stage

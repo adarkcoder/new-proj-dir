@@ -24,6 +24,12 @@ spec:
         image: public.ecr.aws/e8n4i2w8/frontend:latest
         ports:
         - containerPort: 8080
+        securityContext:  
+          privileged: false 
+          allowPrivilegeEscalation: false       
+          readOnlyRootFilesystem: true
+          runAsUser: 1005  
+          runAsNonRoot: true 
         resources:
           limits:
             memory: "500Mi"

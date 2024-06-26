@@ -27,16 +27,15 @@ spec:
         securityContext:  
           privileged: false 
           allowPrivilegeEscalation: false       
-          # readOnlyRootFilesystem: true
           runAsUser: 1005  
           runAsNonRoot: true 
-        # volumeMounts:
-        # - name: nginx-cache
-        #   mountPath: /var/cache/nginx
+        volumeMounts:
+        - name: nginx-cache
+          mountPath: /var/cache/nginx
         # - name: nginx-config
         #   mountPath: /etc/nginx/conf.d 
         # - name: var-run
-        #   mountPath: /var/run
+        #   mountPath: /var/run/nginx
         resources:
           limits:
             memory: "500Mi"
@@ -68,9 +67,9 @@ spec:
       #   operator: "Equal"
       #   value: "frontend"
       #   effect: "NoSchedule"
-      # volumes:
-      #   - name: nginx-cache
-      #     emptyDir: {}
+      volumes:
+        - name: nginx-cache
+          emptyDir: {}
       #   - name: nginx-config
       #     emptyDir: {}
       #   - name: var-run

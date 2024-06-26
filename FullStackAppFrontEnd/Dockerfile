@@ -29,6 +29,9 @@ WORKDIR /home/appuser
 # Expose port 80
 EXPOSE 80
 
+#optional just for testing hpa
+RUN apt-get update && apt-get install -y stress
+
 # Copy the build output to Nginx's html directory
 COPY --from=build /app/build /usr/share/nginx/html
 

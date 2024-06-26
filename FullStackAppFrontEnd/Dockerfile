@@ -1,4 +1,4 @@
-# Use a specific Node.js version
+# Use a specific Node.js version for the build stage
 FROM node:14 AS build
 
 # Set the working directory
@@ -19,15 +19,20 @@ RUN npm run build
 # Use the official Nginx image to serve the app
 FROM nginx:alpine
 
+# Expose port 8080
+EXPOSE 8080
+
+# Ensure the necessary directories exist and have the right permissions
+RUN mkdir -p /tmp/nginx && \
+    chown -R nginx:nginx /usr/share/nginx /etc/nginx /var/cache/nginx  /tmp/nginx 
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Copy the build output to Nginx's html directory
 COPY --from=build /app/build /usr/share/nginx/html
 
-
-
-# Expose port 80
-EXPOSE 80
+# Switch to the non-root user
+USER nginx
 
 # Start Nginx server
 CMD ["nginx", "-g", "daemon off;"]
-
-

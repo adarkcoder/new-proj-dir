@@ -18,7 +18,7 @@ RUN addgroup --gid 1000 appgroup
 RUN adduser --home /home/appuser --uid 1005 --gid 1000 --disabled-password --gecos "" --shell /bin/bash appuser
 
 # Set the working directory
-WORKDIR /home/appuser
+WORKDIR /app
 
 # Expose port 8080
 EXPOSE 8080

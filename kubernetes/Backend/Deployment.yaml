@@ -31,10 +31,8 @@ spec:
           runAsUser: 1005  
           runAsNonRoot: true
         volumeMounts:
-        - name: nginx-cache
-          mountPath: /var/cache/nginx
-        - name: nginx-config
-          mountPath: /etc/nginx/conf.d 
+        - name: temp
+          mountPath: /tmp
         resources:
           limits:
             memory: "1000Mi"
@@ -67,7 +65,5 @@ spec:
       #   value: "backend"
       #   effect: "NoSchedule"
       volumes:
-      - name: nginx-cache
-        emptyDir: {}
-      - name: nginx-config
+      - name: temp
         emptyDir: {}

@@ -35,6 +35,8 @@ spec:
           mountPath: /var/cache/nginx
         - name: nginx-config
           mountPath: /etc/nginx/conf.d 
+        - name: var-run
+          mountPath: /var/run
         resources:
           limits:
             memory: "500Mi"
@@ -70,4 +72,6 @@ spec:
         - name: nginx-cache
           emptyDir: {}
         - name: nginx-config
+          emptyDir: {}
+        - name: var-run
           emptyDir: {}

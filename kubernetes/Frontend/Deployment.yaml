@@ -25,11 +25,11 @@ spec:
         ports:
         - containerPort: 8080 
         securityContext:  
-          privileged: false 
-          allowPrivilegeEscalation: false       
+          # privileged: false 
+          # allowPrivilegeEscalation: false       
           readOnlyRootFilesystem: true
-          runAsUser: 101 
-          runAsNonRoot: true
+          # runAsUser: 101 
+          # runAsNonRoot: true
         resources:
           limits:
             memory: "500Mi"

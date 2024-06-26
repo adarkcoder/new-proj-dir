@@ -29,7 +29,12 @@ spec:
           allowPrivilegeEscalation: false       
           readOnlyRootFilesystem: true
           runAsUser: 1005  
-          runAsNonRoot: true 
+          runAsNonRoot: true
+        volumeMounts:
+        - name: nginx-cache
+          mountPath: /var/cache/nginx
+        - name: nginx-config
+          mountPath: /etc/nginx/conf.d 
         resources:
           limits:
             memory: "1000Mi"
@@ -61,3 +66,8 @@ spec:
       #   operator: "Equal"
       #   value: "backend"
       #   effect: "NoSchedule"
+      volumes:
+      - name: nginx-cache
+        emptyDir: {}
+      - name: nginx-config
+        emptyDir: {}

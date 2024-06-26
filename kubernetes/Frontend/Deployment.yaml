@@ -40,6 +40,8 @@ spec:
         volumeMounts:
         - name: var-cache
           mountPath: /var/cache/nginx
+        - name: temp
+          mountPath: /tmp
         # readinessProbe:
         #   httpGet:
         #     scheme: HTTP
@@ -66,5 +68,7 @@ spec:
       #   effect: "NoSchedule"
       volumes:
       - name: var-cache
+        emptyDir: {}
+      - name: temp
         emptyDir: {}
     

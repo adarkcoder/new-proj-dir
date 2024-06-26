@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend-container
+        image: backend
+        ports:
+        - containerPort: 8011
+        resources:
+          limits:
+            memory: "8500Mi"
+            cpu: "4500m"
+          requests:
+            memory: "1000Mi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /health
+            port: 8011
+          initialDelaySeconds: 15
+          periodSeconds: 5
+        livenessProbe:
+          successThreshold: 1
+          failureThreshold: 5
+          periodSeconds: 15 
+          initialDelaySeconds: 20
+          timeoutSeconds: 5
+          httpGet:
+            path: /health
+            port: 8011
+            scheme: HTTP
+      nodeSelector:
+        application: "backend"
+      tolerations:
+      - key: "application"
+        operator: "Equal"
+        value: "backend"
+        effect: "NoSchedule"

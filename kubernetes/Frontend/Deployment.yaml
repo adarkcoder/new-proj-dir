@@ -66,8 +66,8 @@ spec:
       #   operator: "Equal"
       #   value: "frontend"
       #   effect: "NoSchedule"
-    volumes:
-      - name: nginx-cache
-        emptyDir: {}
-      - name: nginx-config
-        emptyDir: {}
+      volumes:
+        - name: nginx-cache
+          emptyDir: {}
+        - name: nginx-config
+          emptyDir: {}

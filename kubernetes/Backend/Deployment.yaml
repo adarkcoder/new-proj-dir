@@ -30,6 +30,22 @@ spec:
           readOnlyRootFilesystem: true
           runAsUser: 1005  
           runAsNonRoot: true
+        env:
+        - name: SPRING_DATASOURCE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: backend-configmap
+              key: spring.datasource.url
+        - name: SPRING_DATASOURCE_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: backend-configmap
+              key: spring.datasource.username
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: spring.datasource.password
         volumeMounts:
         - name: temp
           mountPath: /tmp

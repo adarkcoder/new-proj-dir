@@ -21,7 +21,8 @@ FROM nginx:alpine
 
 #Create new user group(appgroup) and user(appuser)
 RUN addgroup --gid 1000 appgroup
-RUN adduser --home /home/appuser --uid 1005 --gid 1000 --disabled-password --gecos "" --shell /bin/bash appuser
+RUN adduser -D -u 1005 -G appgroup -h /home/appuser -s /bin/bash appuser
+
 
 # Set the working directory
 WORKDIR /home/appuser

@@ -37,7 +37,7 @@ variable "public_key_path" {
 variable "db_cluster_identifier" {
   description = "Identifier for the RDS cluster"
   type        = string
-  default     = "my-rds-cluster-3"
+  default     = "my-rds-cluster"
 }
 
 variable "db_name" {

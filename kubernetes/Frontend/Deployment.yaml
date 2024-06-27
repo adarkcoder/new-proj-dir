@@ -22,7 +22,8 @@ spec:
       initContainers:
       - name: init-nginx
         image: busybox
-        command: ['sh', '-c', 'mkdir -p /tmp/nginx && touch /tmp/nginx/nginx.pid && chown -R 101:101 /tmp/nginx']
+        # command: ['sh', '-c', 'mkdir -p /tmp/nginx && touch /tmp/nginx/nginx.pid && chown -R 101:101 /tmp/nginx']
+        command: ['echo hi']
         volumeMounts:
         - name: tmp-nginx
           mountPath: /tmp/nginx

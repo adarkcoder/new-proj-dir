@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: backend.example.com
+    - host: grafana.example.com
       http:
         paths:
           - path: /

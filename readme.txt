@@ -1,64 +1,11 @@
-first to get the infra:
-go the terraform folder and cd  .ssh and do ssh-key to create key value pair
 
-ssh-keygen -t rsa -b 4096 -C "manoj@example.com"
-Generating public/private rsa key pair.
-Enter file in which to save the key (/c/Users/MANOJ/.ssh/id_rsa): ./id_rsa
-Enter passphrase (empty for no passphrase):
-Enter same passphrase again:
-Your identification has been saved in ./id_rsa
-Your public key has been saved in ./id_rsa.pub
-
-
-then go to code folder inside the terraform folder.
-
-then do terraform init
-terraform apply -auto-approve
-it will ask password, give: NewPassManu
-or you can provide your own password then make sure to update kubernetes secret according to it in the backend folder inside kuberentes folder
-
-after that do terraform output and get the bastion_public_ip
- then do ssh -i path_to_private_key ubuntu@ipaddress_got form previous step
-
-then do aws configure and set the access key id and secret access key
-connecting to the cluster
-aws eks update-kubeconfig --region region-code --name my-cluster
-
-
-installing metrics server
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
-
-
-installing nginx-ingress
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/aws/deploy.yaml
-
-git clone the repository
-
-go to prometheus folder inside kuberentes
-
-kubectl apply -f crds.yaml
-kubectl apply -f eks-monitoring.yaml
-kubectl apply -f grafana-ingress.yaml
-
-from the kubernetes foder execute the following command to deploy frontend and backend pods:
-kubectl apply -f Backend/ -f Frontend/
-
-go see the hpa working:
-1, kubectl get all to see all pods
-2, execute stress in any of the pods:
-kubectl exec -it pod-name -- stress -c 3 
-
-now do,
-kubectl get pods or kubectl get all
-
-we can see the pod scaling 
-
-now go the browser and type frontend.exampl.com to get the webapp
-
-now to see the grafana go to grafana.example.com explore the metrics
 
 
 # Project Setup Guide
+
+Clone the project repository:
+
+git clone https://github.com/adarkcoder/new-proj-dir.git
 
 ## Infrastructure Setup with Terraform
 

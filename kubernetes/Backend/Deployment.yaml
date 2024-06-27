@@ -22,6 +22,7 @@ spec:
       containers:
       - name: backend-container
         image: public.ecr.aws/e8n4i2w8/backend:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         securityContext:  

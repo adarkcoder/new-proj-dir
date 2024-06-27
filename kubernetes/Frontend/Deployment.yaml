@@ -19,6 +19,13 @@ spec:
       labels:
         app: frontend
     spec:
+      initContainers:
+      - name: init-nginx
+        image: busybox
+        command: ['sh', '-c', 'mkdir -p /tmp/nginx && touch /tmp/nginx/nginx.pid && chown -R 101:101 /tmp/nginx']
+        volumeMounts:
+        - name: tmp-nginx
+          mountPath: /tmp/nginx
       containers:
       - name: frontend-container
         image: public.ecr.aws/e8n4i2w8/frontend:latest

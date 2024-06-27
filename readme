@@ -1,7 +1,16 @@
 first to get the infra:
-go the terraform folder and cd .ssh and do ssh-key to create key value pair
+go the terraform folder and cd  .ssh and do ssh-key to create key value pair
 
-then go to code folder inside the terraform folder and update the path to the public key in the variables.tf file public_key_path varible
+ssh-keygen -t rsa -b 4096 -C "manoj@example.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/MANOJ/.ssh/id_rsa): ./id_rsa
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in ./id_rsa
+Your public key has been saved in ./id_rsa.pub
+
+
+then go to code folder inside the terraform folder.
 
 then do terraform init
 terraform apply -auto-approve
@@ -79,8 +88,9 @@ Get the bastion host public IP address:
 
 terraform output
 # Note the `bastion_public_ip`
+# Also update the config map with rds_cluster_endpoint
 
-5. SSH into Bastion Host
+5. SSH into Bastion Host 
 SSH into the bastion host using the private key:
 
 ssh -i path_to_private_key ubuntu@bastion_public_ip
